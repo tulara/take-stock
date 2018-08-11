@@ -1,4 +1,4 @@
 create table inventory (
-    ID int not null,
+    ID SERIAL,
     NAME varchar(100) not null
 );

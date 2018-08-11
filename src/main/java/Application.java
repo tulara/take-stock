@@ -1,16 +1,19 @@
+import repositories.InventoryRepository;
 import repositories.PostgresConnector;
 
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
-        new PostgresConnector().connect();
+        InventoryRepository inventoryRepository = new InventoryRepository(new PostgresConnector());
 
-        System.out.println("enter a thing: ");
+        System.out.println("enter a name: ");
         Scanner scanner = new Scanner(System.in);
 
-        String input = scanner.nextLine();
-        System.out.println(input);
+        String name = scanner.nextLine();
+        long id = inventoryRepository.insertStock(name);
+
+        System.out.println(String.format("saved %s into inventory with id: %d ", name, id));
 
     }
 }
