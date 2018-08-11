@@ -1,4 +1,6 @@
-package repositories;
+package inventory;
+
+import database.IDatabaseConnector;
 
 import java.sql.*;
 

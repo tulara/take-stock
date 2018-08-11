@@ -1,5 +1,5 @@
-import repositories.InventoryRepository;
-import repositories.PostgresConnector;
+import inventory.InventoryRepository;
+import database.PostgresConnector;
 
 import java.util.Scanner;
 
