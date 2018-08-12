@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class PostgresConnector implements IDatabaseConnector {
-    private static final String url = "jdbc:postgresql://192.168.99.100:32768/takestock";
+    private static final String url = "jdbc:postgresql://192.168.99.100:5432/takestock";
     private static final String user = "postgres";
     private static final String password = "mysecretpassword";
 
