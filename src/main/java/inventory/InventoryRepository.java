@@ -8,6 +8,7 @@ public class InventoryRepository {
     private Connection connection;
     private static String INSERT_PRODUCT = "INSERT INTO products(title, author, in_stock) VALUES(?,?,?)";
     private static String INSERT_INVENTORY = "INSERT INTO inventory(product_id, isbn) VALUES(?, ?)";
+    private static String SELECT_PRODUCT = "SELECT * FROM products where product_id=?";
 
     public InventoryRepository(IDatabaseConnector connector){
         this.connection = connector.connect();
@@ -46,5 +47,23 @@ public class InventoryRepository {
         }
 
         return productId;
+    }
+
+    public Product getProduct(int productId){
+        try {
+            PreparedStatement statement= connection.prepareStatement(SELECT_PRODUCT);
+            statement.setInt(1,productId);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                return new Product(
+                        productId,
+                        resultSet.getString("author"),
+                        resultSet.getString("title"),
+                        resultSet.getInt("in_stock"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
